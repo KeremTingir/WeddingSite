@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Düğün Fotoğrafları - Paylaşım</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'wedding-pink': '#FFB6C1',
+                        'wedding-gold': '#FFD700',
+                        'wedding-rose': '#FFE4E1'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #FFB6C1 0%, #FFE4E1 50%, #FFD700 100%);
+        }
+        .upload-area {
+            border: 2px dashed #FFB6C1;
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            border-color: #FFD700;
+            background-color: rgba(255, 214, 0, 0.1);
+        }
+        .upload-area.dragover {
+            border-color: #FFD700;
+            background-color: rgba(255, 214, 0, 0.2);
+        }
+        .file-preview {
+            transition: all 0.3s ease;
+        }
+        .file-preview:hover {
+            transform: scale(1.05);
+        }
+        .heart-beat {
+            animation: heartBeat 2s infinite;
+        }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8 fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+                💒 Düğün Fotoğrafları 💒
+            </h1>
+            <p class="text-xl md:text-2xl text-white font-medium drop-shadow-md">
+                Düğünde çektiğiniz fotoğrafları bizimle paylaşın!
+            </p>
+            <div class="heart-beat text-4xl mt-4">💕</div>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl p-6 md:p-8 fade-in">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+                    Fotoğraflarınızı Seçin
+                </h2>
+                <p class="text-gray-600">
+                    JPEG veya PNG formatında fotoğraf seçebilirsiniz
+                </p>
+            </div>
+
+            <!-- Upload Area -->
+            <div id="uploadArea" class="upload-area rounded-xl p-8 text-center cursor-pointer mb-6">
+                <div class="text-6xl mb-4">📸</div>
+                <p class="text-lg text-gray-700 mb-2">
+                    Fotoğrafları buraya sürükleyin veya tıklayın
+                </p>
+                <p class="text-sm text-gray-500">
+                    Birden fazla fotoğraf seçebilirsiniz
+                </p>
+                <input type="file" id="fileInput" multiple accept="image/jpeg,image/png" class="hidden">
+            </div>
+
+            <!-- File Preview -->
+            <div id="filePreview" class="hidden mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Seçilen Fotoğraflar:</h3>
+                <div id="previewContainer" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
+            </div>
+
+            <!-- Upload Button -->
+            <div id="uploadSection" class="hidden">
+                <button id="uploadBtn" class="w-full bg-gradient-to-r from-wedding-pink to-wedding-gold text-white font-bold py-4 px-6 rounded-xl text-lg hover:from-wedding-gold hover:to-wedding-pink transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    📤 Fotoğrafları Yükle
+                </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div id="progressSection" class="hidden mt-4">
+                <div class="bg-gray-200 rounded-full h-3">
+                    <div id="progressBar" class="bg-gradient-to-r from-wedding-pink to-wedding-gold h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="progressText" class="text-center text-sm text-gray-600 mt-2">Yükleniyor...</p>
+            </div>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="hidden text-center py-6">
+                <div class="text-6xl mb-4">🎉</div>
+                <h3 class="text-2xl font-bold text-green-600 mb-2">Teşekkür ederiz!</h3>
+                <p class="text-gray-600">Fotoğraflarınız başarıyla yüklendi.</p>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="max-w-2xl mx-auto mt-8 bg-white/80 backdrop-blur-sm rounded-xl p-6 text-center fade-in">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Nasıl Çalışır?</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div class="flex flex-col items-center">
+                    <div class="text-3xl mb-2">📱</div>
+                    <p class="text-gray-700">Fotoğrafları seçin</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="text-3xl mb-2">☁️</div>
+                    <p class="text-gray-700">Otomatik yükleme</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="text-3xl mb-2">💝</div>
+                    <p class="text-gray-700">Anıları paylaşın</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const filePreview = document.getElementById('filePreview');
+        const previewContainer = document.getElementById('previewContainer');
+        const uploadSection = document.getElementById('uploadSection');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const progressSection = document.getElementById('progressSection');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const successMessage = document.getElementById('successMessage');
+
+        let selectedFiles = [];
+
+        // Drag and drop functionality
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files).filter(file => 
+                file.type.startsWith('image/')
+            );
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            handleFiles(files);
+        });
+
+        function handleFiles(files) {
+            selectedFiles = files;
+            
+            if (files.length > 0) {
+                showFilePreview();
+                showUploadButton();
+            }
+        }
+
+        function showFilePreview() {
+            previewContainer.innerHTML = '';
+            
+            selectedFiles.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const preview = document.createElement('div');
+                    preview.className = 'file-preview bg-gray-100 rounded-lg p-2';
+                    preview.innerHTML = `
+                        <img src="${e.target.result}" alt="Preview" class="w-full h-24 object-cover rounded">
+                        <p class="text-xs text-gray-600 mt-1 truncate">${file.name}</p>
+                    `;
+                    previewContainer.appendChild(preview);
+                };
+                reader.readAsDataURL(file);
+            });
+            
+            filePreview.classList.remove('hidden');
+        }
+
+        function showUploadButton() {
+            uploadSection.classList.remove('hidden');
+        }
+
+        function showProgress() {
+            progressSection.classList.remove('hidden');
+            uploadSection.classList.add('hidden');
+        }
+
+        function updateProgress(percent) {
+            progressBar.style.width = `${percent}%`;
+            progressText.textContent = `Yükleniyor... ${percent}%`;
+        }
+
+        function showSuccess() {
+            progressSection.classList.add('hidden');
+            successMessage.classList.remove('hidden');
+            
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                resetForm();
+            }, 3000);
+        }
+
+        function resetForm() {
+            selectedFiles = [];
+            fileInput.value = '';
+            filePreview.classList.add('hidden');
+            uploadSection.classList.add('hidden');
+            progressSection.classList.add('hidden');
+            successMessage.classList.add('hidden');
+            progressBar.style.width = '0%';
+        }
+
+        uploadBtn.addEventListener('click', async () => {
+            if (selectedFiles.length === 0) return;
+
+            showProgress();
+
+            // Simulate upload progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        showSuccess();
+                    }, 500);
+                }
+                updateProgress(Math.round(progress));
+            }, 200);
+
+            // In a real implementation, you would upload to your server here
+            // For now, we'll simulate the upload process
+        });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add fade-in animation to elements
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+</html>
