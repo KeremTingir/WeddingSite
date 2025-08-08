@@ -3,279 +3,603 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Düğün Fotoğrafları - Paylaşım</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'wedding-pink': '#FFB6C1',
-                        'wedding-gold': '#FFD700',
-                        'wedding-rose': '#FFE4E1'
-                    }
-                }
+    <title>Beyza ❤️ Sercan - Düğün Fotoğrafları</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <style>
+        /* Reset ve temel stiller */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ana gradient arka plan */
+        .gradient-bg {
+            background: linear-gradient(135deg, 
+                #FFE4E1 0%, 
+                #FFF8DC 25%, 
+                #FFD700 50%, 
+                #FFB6C1 75%, 
+                #FFF8DC 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Partikül animasyonları */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 215, 0, 0.6);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 6s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 7s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 8s; }
+        .particle:nth-child(10) { left: 95%; animation-delay: 9s; }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
             }
         }
-    </script>
-    <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #FFB6C1 0%, #FFE4E1 50%, #FFD700 100%);
+
+        /* Çiçek dekorasyonları */
+        .flower-decoration {
+            position: fixed;
+            font-size: 3rem;
+            z-index: 2;
+            animation: flowerFloat 8s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
         }
-        .upload-area {
-            border: 2px dashed #FFB6C1;
-            transition: all 0.3s ease;
+
+        .flower-left {
+            left: 5%;
+            animation-delay: 0s;
         }
-        .upload-area:hover {
-            border-color: #FFD700;
-            background-color: rgba(255, 214, 0, 0.1);
+
+        .flower-right {
+            right: 5%;
+            animation-delay: 2s;
         }
-        .upload-area.dragover {
-            border-color: #FFD700;
-            background-color: rgba(255, 214, 0, 0.2);
+
+        .flower-left-top {
+            left: 8%;
+            top: 15%;
+            animation-delay: 1s;
         }
-        .file-preview {
-            transition: all 0.3s ease;
+
+        .flower-right-top {
+            right: 8%;
+            top: 20%;
+            animation-delay: 3s;
         }
-        .file-preview:hover {
-            transform: scale(1.05);
+
+        .flower-left-bottom {
+            left: 3%;
+            bottom: 25%;
+            animation-delay: 4s;
         }
-        .heart-beat {
+
+        .flower-right-bottom {
+            right: 3%;
+            bottom: 30%;
+            animation-delay: 5s;
+        }
+
+        .flower-left-middle {
+            left: 2%;
+            top: 50%;
+            animation-delay: 6s;
+        }
+
+        .flower-right-middle {
+            right: 2%;
+            top: 45%;
+            animation-delay: 7s;
+        }
+
+        .flower-left-center {
+            left: 12%;
+            top: 35%;
+            animation-delay: 8s;
+        }
+
+        .flower-right-center {
+            right: 12%;
+            top: 40%;
+            animation-delay: 9s;
+        }
+
+        .flower-left-far {
+            left: 15%;
+            bottom: 15%;
+            animation-delay: 10s;
+        }
+
+        .flower-right-far {
+            right: 15%;
+            bottom: 20%;
+            animation-delay: 11s;
+        }
+
+        .flower-left-high {
+            left: 6%;
+            top: 25%;
+            animation-delay: 12s;
+        }
+
+        .flower-right-high {
+            right: 6%;
+            top: 30%;
+            animation-delay: 13s;
+        }
+
+        .flower-left-low {
+            left: 10%;
+            bottom: 35%;
+            animation-delay: 14s;
+        }
+
+        .flower-right-low {
+            right: 10%;
+            bottom: 40%;
+            animation-delay: 15s;
+        }
+
+        .flower-center-left {
+            left: 20%;
+            top: 10%;
+            animation-delay: 16s;
+        }
+
+        .flower-center-right {
+            right: 20%;
+            top: 15%;
+            animation-delay: 17s;
+        }
+
+        .flower-center-bottom-left {
+            left: 18%;
+            bottom: 10%;
+            animation-delay: 18s;
+        }
+
+        .flower-center-bottom-right {
+            right: 18%;
+            bottom: 15%;
+            animation-delay: 19s;
+        }
+
+        @keyframes flowerFloat {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            25% { 
+                transform: translateY(-10px) rotate(5deg) scale(1.05);
+            }
+            50% { 
+                transform: translateY(-5px) rotate(-3deg) scale(1.1);
+            }
+            75% { 
+                transform: translateY(-15px) rotate(3deg) scale(1.05);
+            }
+        }
+
+        /* Ana container */
+        .container {
+            position: relative;
+            z-index: 3;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Başlık */
+        .title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            color: #8B4513;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: titleFadeIn 1.5s ease-out;
+            position: relative;
+        }
+
+        .title::before,
+        .title::after {
+            content: '🌹';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
             animation: heartBeat 2s infinite;
         }
+
+        .title::before {
+            left: -60px;
+        }
+
+        .title::after {
+            right: -60px;
+        }
+
+        @keyframes titleFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @keyframes heartBeat {
-            0% { transform: scale(1); }
-            14% { transform: scale(1.1); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.1); }
-            70% { transform: scale(1); }
+            0% { transform: translateY(-50%) scale(1); }
+            14% { transform: translateY(-50%) scale(1.1); }
+            28% { transform: translateY(-50%) scale(1); }
+            42% { transform: translateY(-50%) scale(1.1); }
+            70% { transform: translateY(-50%) scale(1); }
         }
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
+
+        /* Ana buton */
+        .upload-btn {
+            background: linear-gradient(45deg, #FFB6C1, #FFD700, #FFE4E1);
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease infinite;
+            border: none;
+            border-radius: 50px;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #8B4513;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 182, 193, 0.3);
+            margin-bottom: 2rem;
+            animation: buttonFadeIn 2s ease-out;
+            position: relative;
+            overflow: hidden;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .upload-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .upload-btn:hover::before {
+            left: 100%;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes buttonFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .upload-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 182, 193, 0.5);
+            background-size: 150% 150%;
+        }
+
+        .upload-btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        /* Bilgilendirme metni */
+        .info-text {
+            text-align: center;
+            color: #8B4513;
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: textFadeIn 2.5s ease-out;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes textFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Ek romantik efektler */
+        .heart-decoration {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 182, 193, 0.3);
+            animation: heartFloat 4s ease-in-out infinite;
+        }
+
+        .heart-decoration:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .heart-decoration:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .heart-decoration:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 2s; }
+        .heart-decoration:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 3s; }
+
+        @keyframes heartFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        /* Responsive tasarım */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .title::before,
+            .title::after {
+                font-size: 1.5rem;
+            }
+            
+            .title::before {
+                left: -40px;
+            }
+            
+            .title::after {
+                right: -40px;
+            }
+            
+            .upload-btn {
+                font-size: 1.2rem;
+                padding: 15px 30px;
+            }
+            
+            .info-text {
+                font-size: 1rem;
+                padding: 15px;
+                margin: 0 20px;
+            }
+
+            .flower-decoration {
+                font-size: 2rem;
+            }
+
+            /* Mobilde bazı çiçekleri gizle */
+            .flower-left-far,
+            .flower-right-far,
+            .flower-center-left,
+            .flower-center-right,
+            .flower-center-bottom-left,
+            .flower-center-bottom-right {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .title::before,
+            .title::after {
+                display: none;
+            }
+            
+            .upload-btn {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+
+            .flower-decoration {
+                font-size: 1.5rem;
+            }
+
+            /* Çok küçük ekranlarda daha fazla çiçeği gizle */
+            .flower-left-middle,
+            .flower-right-middle,
+            .flower-left-center,
+            .flower-right-center,
+            .flower-left-high,
+            .flower-right-high,
+            .flower-left-low,
+            .flower-right-low {
+                display: none;
+            }
+        }
+
+        /* Ek görsel efektler */
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 40%; right: 20%; animation-delay: 1s; }
+        .sparkle:nth-child(3) { bottom: 40%; left: 25%; animation-delay: 2s; }
+        .sparkle:nth-child(4) { bottom: 20%; right: 25%; animation-delay: 3s; }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
-<body class="gradient-bg min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-        <!-- Header -->
-        <div class="text-center mb-8 fade-in">
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-                💒 Düğün Fotoğrafları 💒
-            </h1>
-            <p class="text-xl md:text-2xl text-white font-medium drop-shadow-md">
-                Düğünde çektiğiniz fotoğrafları bizimle paylaşın!
+<body>
+    <!-- Partikül animasyonları -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Çiçek dekorasyonları -->
+    <div class="flower-decoration flower-left">🌸</div>
+    <div class="flower-decoration flower-right">🌺</div>
+    <div class="flower-decoration flower-left-top">🌷</div>
+    <div class="flower-decoration flower-right-top">🌹</div>
+    <div class="flower-decoration flower-left-bottom">🌼</div>
+    <div class="flower-decoration flower-right-bottom">🌻</div>
+    <div class="flower-decoration flower-left-middle">🌸</div>
+    <div class="flower-decoration flower-right-middle">🌺</div>
+    <div class="flower-decoration flower-left-center">🌷</div>
+    <div class="flower-decoration flower-right-center">🌹</div>
+    <div class="flower-decoration flower-left-far">🌼</div>
+    <div class="flower-decoration flower-right-far">🌻</div>
+    <div class="flower-decoration flower-left-high">🌸</div>
+    <div class="flower-decoration flower-right-high">🌺</div>
+    <div class="flower-decoration flower-left-low">🌷</div>
+    <div class="flower-decoration flower-right-low">🌹</div>
+    <div class="flower-decoration flower-center-left">🌼</div>
+    <div class="flower-decoration flower-center-right">🌻</div>
+    <div class="flower-decoration flower-center-bottom-left">🌸</div>
+    <div class="flower-decoration flower-center-bottom-right">🌺</div>
+
+    <!-- Romantik kalp dekorasyonları -->
+    <div class="heart-decoration">💕</div>
+    <div class="heart-decoration">💝</div>
+    <div class="heart-decoration">💖</div>
+    <div class="heart-decoration">💗</div>
+
+    <!-- Sparkle efektleri -->
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+
+    <!-- Ana gradient arka plan -->
+    <div class="gradient-bg">
+        <div class="container">
+            <!-- Başlık -->
+            <h1 class="title">Beyza ❤️ Sercan</h1>
+            
+            <!-- Ana buton -->
+            <button class="upload-btn" id="uploadBtn">
+                📸 Fotoğraf Yükle
+            </button>
+            
+            <!-- Bilgilendirme metni -->
+            <p class="info-text">
+                Butona tıklayın, Drive açılacak. Oraya düğünde çektiğiniz fotoğraflarınızı yükleyin 💕
             </p>
-            <div class="heart-beat text-4xl mt-4">💕</div>
-        </div>
-
-        <!-- Upload Section -->
-        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl p-6 md:p-8 fade-in">
-            <div class="text-center mb-6">
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
-                    Fotoğraflarınızı Seçin
-                </h2>
-                <p class="text-gray-600">
-                    JPEG veya PNG formatında fotoğraf seçebilirsiniz
-                </p>
-            </div>
-
-            <!-- Upload Area -->
-            <div id="uploadArea" class="upload-area rounded-xl p-8 text-center cursor-pointer mb-6">
-                <div class="text-6xl mb-4">📸</div>
-                <p class="text-lg text-gray-700 mb-2">
-                    Fotoğrafları buraya sürükleyin veya tıklayın
-                </p>
-                <p class="text-sm text-gray-500">
-                    Birden fazla fotoğraf seçebilirsiniz
-                </p>
-                <input type="file" id="fileInput" multiple accept="image/jpeg,image/png" class="hidden">
-            </div>
-
-            <!-- File Preview -->
-            <div id="filePreview" class="hidden mb-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-3">Seçilen Fotoğraflar:</h3>
-                <div id="previewContainer" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
-            </div>
-
-            <!-- Upload Button -->
-            <div id="uploadSection" class="hidden">
-                <button id="uploadBtn" class="w-full bg-gradient-to-r from-wedding-pink to-wedding-gold text-white font-bold py-4 px-6 rounded-xl text-lg hover:from-wedding-gold hover:to-wedding-pink transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    📤 Fotoğrafları Yükle
-                </button>
-            </div>
-
-            <!-- Progress Bar -->
-            <div id="progressSection" class="hidden mt-4">
-                <div class="bg-gray-200 rounded-full h-3">
-                    <div id="progressBar" class="bg-gradient-to-r from-wedding-pink to-wedding-gold h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
-                </div>
-                <p id="progressText" class="text-center text-sm text-gray-600 mt-2">Yükleniyor...</p>
-            </div>
-
-            <!-- Success Message -->
-            <div id="successMessage" class="hidden text-center py-6">
-                <div class="text-6xl mb-4">🎉</div>
-                <h3 class="text-2xl font-bold text-green-600 mb-2">Teşekkür ederiz!</h3>
-                <p class="text-gray-600">Fotoğraflarınız başarıyla yüklendi.</p>
-            </div>
-        </div>
-
-        <!-- Instructions -->
-        <div class="max-w-2xl mx-auto mt-8 bg-white/80 backdrop-blur-sm rounded-xl p-6 text-center fade-in">
-            <h3 class="text-xl font-semibold text-gray-800 mb-3">Nasıl Çalışır?</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                <div class="flex flex-col items-center">
-                    <div class="text-3xl mb-2">📱</div>
-                    <p class="text-gray-700">Fotoğrafları seçin</p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="text-3xl mb-2">☁️</div>
-                    <p class="text-gray-700">Otomatik yükleme</p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="text-3xl mb-2">💝</div>
-                    <p class="text-gray-700">Anıları paylaşın</p>
-                </div>
-            </div>
         </div>
     </div>
 
+    <!-- JavaScript -->
     <script>
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('fileInput');
-        const filePreview = document.getElementById('filePreview');
-        const previewContainer = document.getElementById('previewContainer');
-        const uploadSection = document.getElementById('uploadSection');
-        const uploadBtn = document.getElementById('uploadBtn');
-        const progressSection = document.getElementById('progressSection');
-        const progressBar = document.getElementById('progressBar');
-        const progressText = document.getElementById('progressText');
-        const successMessage = document.getElementById('successMessage');
-
-        let selectedFiles = [];
-
-        // Drag and drop functionality
-        uploadArea.addEventListener('click', () => fileInput.click());
-
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
+        // Google Drive linki - burayı kendi linkinizle değiştirin
+        const GOOGLE_DRIVE_LINK = 'https://drive.google.com/drive/folders/1uZKxhh5_7-mIP1Ctv1mYlyFUK1MqLTW3?usp=sharing';
+        
+        // Buton tıklama olayı
+        document.getElementById('uploadBtn').addEventListener('click', function() {
+            // Google Drive'a yönlendir
+            window.open(GOOGLE_DRIVE_LINK, '_blank');
         });
 
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            const files = Array.from(e.dataTransfer.files).filter(file => 
-                file.type.startsWith('image/')
-            );
-            handleFiles(files);
-        });
-
-        fileInput.addEventListener('change', (e) => {
-            const files = Array.from(e.target.files);
-            handleFiles(files);
-        });
-
-        function handleFiles(files) {
-            selectedFiles = files;
+        // Ek interaktif efektler
+        document.addEventListener('DOMContentLoaded', function() {
+            // Buton hover efektini güçlendir
+            const btn = document.getElementById('uploadBtn');
             
-            if (files.length > 0) {
-                showFilePreview();
-                showUploadButton();
-            }
-        }
-
-        function showFilePreview() {
-            previewContainer.innerHTML = '';
-            
-            selectedFiles.forEach((file, index) => {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const preview = document.createElement('div');
-                    preview.className = 'file-preview bg-gray-100 rounded-lg p-2';
-                    preview.innerHTML = `
-                        <img src="${e.target.result}" alt="Preview" class="w-full h-24 object-cover rounded">
-                        <p class="text-xs text-gray-600 mt-1 truncate">${file.name}</p>
-                    `;
-                    previewContainer.appendChild(preview);
-                };
-                reader.readAsDataURL(file);
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.05)';
             });
             
-            filePreview.classList.remove('hidden');
-        }
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
 
-        function showUploadButton() {
-            uploadSection.classList.remove('hidden');
-        }
-
-        function showProgress() {
-            progressSection.classList.remove('hidden');
-            uploadSection.classList.add('hidden');
-        }
-
-        function updateProgress(percent) {
-            progressBar.style.width = `${percent}%`;
-            progressText.textContent = `Yükleniyor... ${percent}%`;
-        }
-
-        function showSuccess() {
-            progressSection.classList.add('hidden');
-            successMessage.classList.remove('hidden');
-            
-            // Reset form after 3 seconds
-            setTimeout(() => {
-                resetForm();
-            }, 3000);
-        }
-
-        function resetForm() {
-            selectedFiles = [];
-            fileInput.value = '';
-            filePreview.classList.add('hidden');
-            uploadSection.classList.add('hidden');
-            progressSection.classList.add('hidden');
-            successMessage.classList.add('hidden');
-            progressBar.style.width = '0%';
-        }
-
-        uploadBtn.addEventListener('click', async () => {
-            if (selectedFiles.length === 0) return;
-
-            showProgress();
-
-            // Simulate upload progress
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        showSuccess();
-                    }, 500);
-                }
-                updateProgress(Math.round(progress));
-            }, 200);
-
-            // In a real implementation, you would upload to your server here
-            // For now, we'll simulate the upload process
-        });
-
-        // Add some interactive effects
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add fade-in animation to elements
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach((el, index) => {
-                el.style.animationDelay = `${index * 0.2}s`;
+            // Çiçeklere hover efekti ekle
+            const flowers = document.querySelectorAll('.flower-decoration');
+            flowers.forEach(flower => {
+                flower.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.2) rotate(10deg)';
+                });
+                
+                flower.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                });
             });
         });
     </script>
